@@ -1,0 +1,101 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2017 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+    colorscheme = "onedark"
+    colorscheme_bg = "dark"
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+    enable_guicolors = true
+    # Disable statusline separator, if you want to use other value, please
+    # install nerd fonts
+    statusline_separator = "arrow"
+    statusline_inactive_separator = "arrow"
+    buffer_index_type = 4
+    enable_tabline_filetype_icon = true
+    enable_statusline_mode = true
+    # nerdtree, vimfiler, defx
+    filemanager = "nerdtree"
+    sidebar_direction = "left"
+    filetree_direction = "left"
+    bootstrap_before = "custom#before"
+    autocomplete_method = "coc"
+    disabled_plugins = ["typescript-vim"]
+
+[[custom_plugins]]
+    name = "ryanoasis/vim-devicons"
+
+[[custom_plugins]]
+    name = "dracula/vim"
+
+[[custom_plugins]]
+    name = "tiagofumo/vim-nerdtree-syntax-highlight"
+
+[[custom_plugins]]
+    name= "HerringtonDarkholme/yats.vim"
+
+# Enable autocomplete layer
+[[layers]]
+    name = 'autocomplete'
+    auto-completion-return-key-behavior = "complete"
+    auto-completion-tab-key-behavior = "smart"
+
+[[layers]]
+    name = 'shell'
+    default_position = 'top'
+    default_height = 30
+
+[[layers]]
+    name = 'lang#javascript'
+
+# We don't need to install a specific layer for typescript, as the functionality
+# will be provided by:
+# - yats: syntax highlight. Note: always use yats instead of typescript-vim, as it sets the correct filetype for TSX, see: 
+#         https://github.com/theia-ide/typescript-language-server/issues/90
+#         https://github.com/leafgarland/typescript-vim/pull/140
+# - lsp : syntax check
+# - coc : autocomplete (works together with lsp)
+[[layers]]
+    name = 'lang#typescript'
+    enable = true
+
+[[layers]]
+    name = "colorscheme"
+
+[[layers]]
+    name = "git"
+    git-plugin = "fugitive"
+
+[[layers]]
+    name = "debug"
+
+[[layers]]
+    name="ui"
+
+[[layers]]
+    name="tags"
+    enable_sidebar = true
+
+[[layers]]
+  name = "shell"
+  default_position = "bottom"
+  default_height = 30
+
+[[layers]]
+  name = "lsp"
+  filetypes = [
+    "javascript",
+    "typescript"
+  ]
+  [layers.override_cmd]
+    javascript = ['javascript-typescript-stdio']
+    typescript = ["typescript-language-server", "--stdio"]
